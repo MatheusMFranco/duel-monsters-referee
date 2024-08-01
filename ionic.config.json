@@ -1,0 +1,7 @@
+{
+  "name": "duel-monsters-referee",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
