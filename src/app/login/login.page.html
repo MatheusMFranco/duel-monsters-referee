@@ -1,0 +1,47 @@
+<ion-card class="login-container">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        <h1>
+          Login
+        </h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="login()" class="ion-padding">
+        <div class="login-container__fields">
+          <ion-input
+            type="email"
+            fill="solid"
+            label="Email"
+            labelPlacement="floating"
+            errorText="Invalid email"
+            [(ngModel)]="user"
+            [ngModelOptions]="{standalone: true}"
+          ></ion-input>
+          <ion-toggle (ionChange)="remainEmail($event)" color="success" [checked]="userRemains">
+            Remain email
+          </ion-toggle>
+          <ion-input
+            type="password"
+            fill="solid"
+            label="Password"
+            labelPlacement="floating"
+            errorText="Invalid password"
+            [(ngModel)]="password"
+            [ngModelOptions]="{standalone: true}"
+          >
+            <ion-input-password-toggle slot="end" color="success"></ion-input-password-toggle>
+          </ion-input>
+        </div>
+        <div class="login-container__buttons">
+          <ion-button disabled class="login-button" color="success" expand="full" class="ion-margin-top">
+            Login
+            <ion-icon slot="start" name="chevron-forward-circle-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" expand="full" color="success" [routerLink]="['/duel']">
+            Access as vagabond
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>

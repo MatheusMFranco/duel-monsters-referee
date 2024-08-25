@@ -1,0 +1,48 @@
+
+* {
+    font-family: monospace;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: cursive;
+    text-shadow: 0px 0px 10px rgba(255,255,255,.5);
+}
+
+form {
+    display: grid;
+    grid-template-rows: 1fr auto; 
+    height: 80vh;
+}
+
+.login-container__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-container {
+    background-color: rgb(42, 42, 42);
+}
+
+@media (max-width: 767px) {
+    .login-container {
+        animation: millenniumAnimation 2s forwards;
+    }
+}
+
+@media (min-width: 769px) {
+    .login-container  {
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+@keyframes millenniumAnimation {
+    from {
+        clip-path: polygon(18% 100%, 80% 100%, 80% 100%, 20% 100%);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+    }
+}
