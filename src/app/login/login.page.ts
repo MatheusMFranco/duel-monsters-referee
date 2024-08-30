@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+
+import { ColorMode } from '../models/color-mode.model';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +16,7 @@ export class LoginPage implements OnInit {
   public user = '';
   public password = '';
   public userRemains = false;
+  public colorMode: ColorMode = 'success'; 
   
   private readonly EMAIL_KEY = 'remain-email';
 
@@ -34,6 +40,18 @@ export class LoginPage implements OnInit {
 
   public remainEmail({detail}: CustomEvent): void {
     this.userRemains = detail.checked;
+  }
+
+  public fieldChange(): void {
+    this.colorMode = this.isEmailInvalid || this.isPasswordInvalid ? 'danger' : 'success';
+  }
+
+  public get isPasswordInvalid(): boolean {
+    return this.password.length < 8;
+  }
+
+  public get isEmailInvalid(): boolean {
+    return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.user);
   }
 
 }
