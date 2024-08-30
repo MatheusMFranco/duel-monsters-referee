@@ -7,41 +7,62 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form (ngSubmit)="login()" class="ion-padding">
+      <form class="ion-padding">
         <div class="login-container__fields">
           <ion-input
-            type="email"
-            fill="solid"
+            fill="outline"
             label="Email"
-            labelPlacement="floating"
-            errorText="Invalid email"
             [(ngModel)]="user"
+            #emailField="ngModel"
             [ngModelOptions]="{standalone: true}"
+            [class]="colorMode"
+            errorText="Invalid email."
+            helperText="Enter a valid email."
+            (ionInput)="fieldChange()"
+            email
+            required
           ></ion-input>
-          <ion-toggle (ionChange)="remainEmail($event)" color="success" [checked]="userRemains">
+          <ion-toggle (ionChange)="remainEmail($event)" [color]="colorMode" [checked]="userRemains">
             Remain email
           </ion-toggle>
           <ion-input
             type="password"
-            fill="solid"
+            fill="outline"
             label="Password"
-            labelPlacement="floating"
-            errorText="Invalid password"
             [(ngModel)]="password"
+            #passowrdField="ngModel"
             [ngModelOptions]="{standalone: true}"
+            [class]="colorMode"
+            [class.danger] = "isPasswordInvalid"
+            errorText="Password is required."
+            (ionInput)="fieldChange()"
+            required
           >
-            <ion-input-password-toggle slot="end" color="success"></ion-input-password-toggle>
+            <ion-input-password-toggle slot="end" [color]="colorMode"></ion-input-password-toggle>
           </ion-input>
+          <ng-container *ngIf="isPasswordInvalid && passowrdField.touched">
+            <ion-text color="danger" class="error">Password must be greater than 8 characters.</ion-text>
+          </ng-container>
         </div>
         <div class="login-container__buttons">
-          <ion-button disabled class="login-button" color="success" expand="full" class="ion-margin-top">
-            Login
+          <ion-button
+            [disabled]="isEmailInvalid || isPasswordInvalid"
+            class="login-button"
+            [color]="colorMode"
+            expand="full"
+            class="ion-margin-top"
+            (click)="login()"
+          >
+              Login
             <ion-icon slot="start" name="chevron-forward-circle-outline"></ion-icon>
           </ion-button>
-          <ion-button fill="clear" expand="full" color="success" [routerLink]="['/duel']">
+          <ion-button fill="outline" expand="full" [color]="colorMode" [routerLink]="['/duel']">
             Access as vagabond
           </ion-button>
         </div>
       </form>
+      <ion-button fill="clear" expand="full" [color]="colorMode" [routerLink]="['/user']">
+        New User?
+      </ion-button>
     </ion-card-content>
   </ion-card>

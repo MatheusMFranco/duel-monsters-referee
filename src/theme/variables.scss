@@ -1,2 +1,8 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+ion-input.danger {
+    --highlight-color-valid: var(--ion-color-danger);
+}
+.error {
+    font-size: 0.75rem;
+    margin-top: -1rem;
+    margin-left: 1rem;
+}
