@@ -12,7 +12,6 @@ import { ColorMode } from '../models/color-mode.model';
 })
 export class LoginPage implements OnInit {
   
-  
   public user = '';
   public password = '';
   public userRemains = false;
@@ -31,14 +30,14 @@ export class LoginPage implements OnInit {
   }
 
   public login(): void {
-    if (this.userRemains) {
-      localStorage.setItem(this.EMAIL_KEY, this.user);
+    if (!this.isEmailInvalid && !this.isPasswordInvalid) {
+      this.checkRemain();
     } else {
-      localStorage.removeItem(this.EMAIL_KEY);
+      throw Error('Email or password invalid.');
     }
   }
 
-  public remainEmail({detail}: CustomEvent): void {
+  public remainEmail({detail}: CustomEvent<{ checked: boolean }>): void {
     this.userRemains = detail.checked;
   }
 
@@ -52,6 +51,14 @@ export class LoginPage implements OnInit {
 
   public get isEmailInvalid(): boolean {
     return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.user);
+  }
+
+  private checkRemain(): void {
+    if (this.userRemains) {
+      localStorage.setItem(this.EMAIL_KEY, this.user);
+    } else {
+      localStorage.removeItem(this.EMAIL_KEY);
+    }
   }
 
 }
