@@ -1,18 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>battle</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">battle</ion-title>
+      <ion-title>Actions</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <ion-content class="ion-padding">
+    <ion-menu-toggle>
+      <ion-button>Find Card</ion-button>
+    </ion-menu-toggle>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button id="card-alert">
+          <ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Duel!</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    
  TODO: Action Sheet with coin, dice and jokenpo
- TODO: Alert to input card name 
  TODO: Badge to count graveyard and banned cards
  TODO: Add ion-img on cards
  TODO: Menu Lateral para deslogar e acessar perfil
@@ -22,5 +36,11 @@
  TODO: Adicionar icone do app 
  TODO: Adicionar Splash Screen animada
  TODO: Configurar Home Page
-
-</ion-content>
+  </ion-content>
+</div>
+<ion-alert
+  trigger="card-alert"
+  header="Please enter the card name"
+  [buttons]="cardNameButtons"
+  [inputs]="cardNameInputs"
+></ion-alert>

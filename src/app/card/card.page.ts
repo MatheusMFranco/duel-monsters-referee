@@ -1,4 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import {
+  first,
+  filter,
+  map,
+  Observable,
+  EMPTY,
+} from 'rxjs';
 
 @Component({
   selector: 'app-card',
@@ -7,11 +19,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardPage implements OnInit {
 
-  public cardName = 'Exódia';
+  public cardName$: Observable<string> = EMPTY;
 
-  constructor() { }
+  constructor(private readonly route: ActivatedRoute) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
+    const PARAM_KEY = 'name';
+    this.cardName$ = this.route.queryParams.pipe(
+      first(),
+      filter(params => !!params[PARAM_KEY]),
+      map(params => params[PARAM_KEY])
+    );
   }
-
 }
