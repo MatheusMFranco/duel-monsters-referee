@@ -1,5 +1,18 @@
-<ion-content [fullscreen]="true">
-  <div id="container">
-    Blablabla
-  </div>
-</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="battle">
+      <ion-icon name="game-controller"></ion-icon>
+      <ion-label>Battle</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="graveyard">
+      <ion-icon name="skull"></ion-icon>
+      <ion-label>Graveyard</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="banned">
+      <ion-icon name="ban"></ion-icon>
+      <ion-label>Banned</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '../shared/shared.module';
 import { DuelRoutingModule } from './duel-routing.module';
 import { DuelPage } from './duel.page';
-import { IonicModule } from '@ionic/angular';
-
 
 @NgModule({
   declarations: [DuelPage],
   imports: [
-    CommonModule,
+    SharedModule,
     DuelRoutingModule,
-    IonicModule,
   ],
 })
 export class DuelPageModule { }
