@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { DuelPage } from './duel.page';
@@ -10,7 +11,7 @@ describe('DuelPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DuelPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), RouterModule.forRoot([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DuelPage);
