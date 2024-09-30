@@ -4,6 +4,8 @@ import {
 } from '@angular/core';
 
 import { ColorMode } from '../models/color-mode.model';
+import { UserPage } from '../user/user.page';
+import { DuelPage } from '../duel/duel.page';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,9 @@ export class LoginPage implements OnInit {
   public userRemains = false;
   public colorMode: ColorMode = 'success'; 
   
+  public userPage = UserPage;
+  public duelPage = DuelPage;
+
   private readonly EMAIL_KEY = 'remain-email';
 
   constructor() { }

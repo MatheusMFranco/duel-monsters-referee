@@ -1,107 +1,96 @@
-<ion-card class="login-container">
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">
-        <h1>
-          Login
-        </h1>
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form class="ion-padding">
-        <div class="login-container__fields">
-          <ion-input
-            id="input-email"
-            fill="outline"
-            label="Email"
-            #emailField="ngModel"
-            (ionInput)="fieldChange()"
-            [(ngModel)]="user"
-            [ngModelOptions]="{standalone: true}"
-            [class]="colorMode"
-            errorText="Invalid email."
-            helperText="Enter a valid email."
-            aria-label="Enter a valid email"
-            aria-describedby="email"
-            email
-            required
-          ></ion-input>
-          <ion-toggle
-            id="toggle-remain"
-            role="button"
-            (ionChange)="remainEmail($event)"
-            [color]="colorMode"
-            [checked]="userRemains"
-          >
-              Remain email
-          </ion-toggle>
-          <ion-input
-            id="input-password"
-            type="password"
-            fill="outline"
-            label="Password"
-            errorText="Password is required."
-            aria-label="Password must be greater than 7 characters"
-            aria-describedby="password"
-            #passowrdField="ngModel"
-            (ionInput)="fieldChange()"
-            [(ngModel)]="password"
-            [ngModelOptions]="{standalone: true}"
-            [class]="colorMode"
-            [class.danger] = "isPasswordInvalid"
-            required
-          >
-            <ion-input-password-toggle
-              id="toggle-password"
-              role="button"
-              tabindex="0"
-              slot="end"
-              aria-label="Show password"
-              [color]="colorMode"
-            ></ion-input-password-toggle>
-          </ion-input>
-          <ng-container *ngIf="isPasswordInvalid && passowrdField.touched">
-            <ion-text
-              id="error-password"
-              color="danger"
-              class="error"
-              aria-live="true"
-              aria-atomic="true"
-            >
-            Password must be greater than 7 characters.
-          </ion-text>
-          </ng-container>
-        </div>
-        <div class="login-container__buttons">
-          <ion-button
-            id="btn-login"
-            class="ion-margin-top"
-            expand="full"
-            [disabled]="isEmailInvalid || isPasswordInvalid"
-            [color]="colorMode"
-            (click)="login()"
-          >
-              Login
-            <ion-icon slot="start" name="chevron-forward-circle-outline"></ion-icon>
-          </ion-button>
-          <ion-button
-            id="btn-vagabond"
-            fill="outline"
-            expand="full"
-            [color]="colorMode"
-            [routerLink]="['/duel']"
-          >
-            Access as vagabond
-          </ion-button>
-        </div>
-      </form>
-      <ion-button
-        id="btn-new-user"
-        fill="clear"
-        expand="full"
+<dmr-anonymous-template title="Login" [hasTransition]="true">
+  <div class="login-container__fields">
+    <ion-input
+      id="input-email"
+      fill="outline"
+      label="Email"
+      #emailField="ngModel"
+      (ionInput)="fieldChange()"
+      [(ngModel)]="user"
+      [ngModelOptions]="{standalone: true}"
+      [class]="colorMode"
+      errorText="Invalid email."
+      helperText="Enter a valid email."
+      aria-label="Enter a valid email"
+      aria-describedby="email"
+      email
+      required
+    ></ion-input>
+    <ion-toggle
+      id="toggle-remain"
+      role="button"
+      (ionChange)="remainEmail($event)"
+      [color]="colorMode"
+      [checked]="userRemains"
+    >
+        Remain email
+    </ion-toggle>
+    <ion-input
+      id="input-password"
+      type="password"
+      fill="outline"
+      label="Password"
+      errorText="Password is required."
+      aria-label="Password must be greater than 7 characters"
+      aria-describedby="password"
+      #passowrdField="ngModel"
+      (ionInput)="fieldChange()"
+      [(ngModel)]="password"
+      [ngModelOptions]="{standalone: true}"
+      [class]="colorMode"
+      [class.danger] = "isPasswordInvalid"
+      required
+    >
+      <ion-input-password-toggle
+        id="toggle-password"
+        role="button"
+        tabindex="0"
+        slot="end"
+        aria-label="Show password"
         [color]="colorMode"
-        [routerLink]="['/user']"
+      ></ion-input-password-toggle>
+    </ion-input>
+    <ng-container *ngIf="isPasswordInvalid && passowrdField.touched">
+      <ion-text
+        id="error-password"
+        color="danger"
+        class="error"
+        aria-live="true"
+        aria-atomic="true"
       >
-        New User?
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+        Password must be greater than 7 characters.
+      </ion-text>
+    </ng-container>
+  </div>
+  <div class="login-container__buttons">
+    <ion-button
+      id="btn-login"
+      class="ion-margin-top"
+      expand="full"
+      [disabled]="isEmailInvalid || isPasswordInvalid"
+      [color]="colorMode"
+      (click)="login()"
+    >
+        Login
+      <ion-icon slot="start" name="chevron-forward-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button
+      id="btn-vagabond"
+      fill="outline"
+      expand="full"
+      [color]="colorMode"
+      [routerLink]="['/duel']"
+    >
+      Access as vagabond
+    </ion-button>
+    <ion-button
+      id="btn-new-user"
+      fill="clear"
+      expand="full"
+      [color]="colorMode"
+      [routerLink]="['/user']"
+    >
+      New User?
+    </ion-button>
+  </div>
+</dmr-anonymous-template>
