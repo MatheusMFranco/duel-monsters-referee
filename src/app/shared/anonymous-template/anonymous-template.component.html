@@ -1,0 +1,14 @@
+<ion-card class="anonymous-container" [ngClass]="{'summon-transition': hasTransition}">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">
+      <h1>
+        {{ title }}
+      </h1>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form class="ion-padding">
+      <ng-content></ng-content>
+    </form>
+  </ion-card-content>
+</ion-card>
