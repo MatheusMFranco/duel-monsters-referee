@@ -73,6 +73,3 @@ Thumbs.db
 cypress/videos
 cypress/screenshots
 cypress/report
-
-#Capacitor
-android
