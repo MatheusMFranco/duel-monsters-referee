@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 
 import { ActionSheetController } from '@ionic/angular';
 
+import { LuckyGuy } from 'super-lucky-guy';
+
+
 import { Jokenpo } from './jokenpo.enum';
 import { Coin } from './coin.enum';
 import { luckyButtonsField } from './battle.field';
@@ -14,6 +17,8 @@ import { SideKey } from './side.type';
   styleUrls: ['./battle.page.scss'],
 })
 export class BattlePage {
+
+  #starter = new LuckyGuy();
 
   public cardNameButtons = [{
     text: 'FIND',
@@ -63,29 +68,19 @@ export class BattlePage {
   }
 
   get rollDice(): number {
-    return this.randomize(6) + 1;
+    return this.#starter.dice();
   }
 
   get showHand(): string {
-    return this.customLuck(Jokenpo);
+    return this.#starter.jokenpo();
   }
 
   get flipCoin(): string {
-    return this.customLuck(Coin);
+    return this.#starter.coin();
   }
 
   private navigateToCardPage(cardName: string): void {
     this.router.navigate(['/card'], { queryParams: { name: cardName } });
-  }
-
-  private customLuck<T extends Record<string, string | number>>(luckType: T): string {
-    const sides = Object.keys(luckType)
-      .filter(key => isNaN(+key)) as SideKey[];
-    return sides[this.randomize(sides.length)];
-  }
-
-  private randomize(sides: number): number {
-    return Math.floor(Math.random() * sides);
   }
 
 }
