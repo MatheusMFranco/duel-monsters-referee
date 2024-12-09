@@ -22,12 +22,12 @@ export class LoginPage implements OnInit {
   public userPage = UserPage;
   public duelPage = DuelPage;
 
-  private readonly EMAIL_KEY = 'remain-email';
+  readonly #EMAIL_KEY = 'remain-email';
 
   constructor() { }
 
   public ngOnInit(): void {
-    const email = localStorage.getItem(this.EMAIL_KEY);
+    const email = localStorage.getItem(this.#EMAIL_KEY);
     if (email) {
       this.user = email;
       this.userRemains = true;
@@ -60,9 +60,9 @@ export class LoginPage implements OnInit {
 
   private checkRemain(): void {
     if (this.userRemains) {
-      localStorage.setItem(this.EMAIL_KEY, this.user);
+      localStorage.setItem(this.#EMAIL_KEY, this.user);
     } else {
-      localStorage.removeItem(this.EMAIL_KEY);
+      localStorage.removeItem(this.#EMAIL_KEY);
     }
   }
 
