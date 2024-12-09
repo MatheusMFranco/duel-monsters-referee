@@ -3,13 +3,9 @@ import { Router } from '@angular/router';
 
 import { ActionSheetController } from '@ionic/angular';
 
-import { LuckyGuy } from 'super-lucky-guy';
-
-
-import { Jokenpo } from './jokenpo.enum';
-import { Coin } from './coin.enum';
+import { Logger } from '../../decorators/logger';
+import { Randomize } from '../../decorators/randomize';
 import { luckyButtonsField } from './battle.field';
-import { SideKey } from './side.type';
 
 @Component({
   selector: 'app-battle',
@@ -18,7 +14,9 @@ import { SideKey } from './side.type';
 })
 export class BattlePage {
 
-  #starter = new LuckyGuy();
+  @Randomize private readonly dice!: string;
+  @Randomize private readonly jokenpo!: string;
+  @Randomize private readonly coin!: string;
 
   public cardNameButtons = [{
     text: 'FIND',
@@ -45,38 +43,26 @@ export class BattlePage {
     });
     await actionSheet.present();
     const result = await actionSheet.onDidDismiss();
-    this.handleAction(result.data.action);
-  }
-
-  private handleAction(action: string): void {
-    switch (action) {
-      case 'flipCoin':
-        console.log(`Coin result: ${this.flipCoin}`);
-        break;
-
-      case 'showHand':
-        console.log(`Jokenpo result: ${this.showHand}`);
-        break;
-
-      case 'rollDice':
-        console.log(`Dice result: ${this.rollDice}`);
-        break;
-
-      default:
-        console.log('Action cancelled');
+    if (result?.data?.action) {
+      this.handleAction(result.data.action);
     }
   }
 
-  get rollDice(): number {
-    return this.#starter.dice();
-  }
+  @Logger('YOU')
+  private handleAction(action: string): string {
+    switch (action) {
+      case 'flipCoin':
+        return `flip a coin [${this.coin}]`;
 
-  get showHand(): string {
-    return this.#starter.jokenpo();
-  }
+      case 'showHand':
+        return `play jokenpo [${this.jokenpo}]`;
 
-  get flipCoin(): string {
-    return this.#starter.coin();
+      case 'rollDice':
+        return `roll a die [${this.dice}]`;
+
+      default:
+        return 'do nothing';
+    }
   }
 
   private navigateToCardPage(cardName: string): void {
