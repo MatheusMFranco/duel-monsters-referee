@@ -58,6 +58,10 @@ export class LoginPage implements OnInit {
     return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.user);
   }
 
+  public getEmailKey() {
+    return this.#EMAIL_KEY;
+  }
+
   private checkRemain(): void {
     if (this.userRemains) {
       localStorage.setItem(this.#EMAIL_KEY, this.user);
