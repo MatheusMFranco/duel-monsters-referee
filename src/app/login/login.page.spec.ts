@@ -11,6 +11,7 @@ import { LoginPage } from './login.page';
 
 import wrongUsersMock from './wrong-users.mock';
 import correctUsersMock from './correct-users.mock';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe(LoginPage.name, () => {
 
@@ -27,13 +28,17 @@ describe(LoginPage.name, () => {
       imports: [
         IonicModule.forRoot(),
         FormsModule,
-      ]
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    localStorage.removeItem(component['EMAIL_KEY']);
+    localStorage.removeItem(component.getEmailKey());
   }));
 
   it('should create', () => {
@@ -77,7 +82,7 @@ describe(LoginPage.name, () => {
 
   it(`should initiate with remains toggle as true`, () => {
     const email = correctUsersMock[0].email;
-    localStorage.setItem(component['EMAIL_KEY'], email);
+    localStorage.setItem(component.getEmailKey(), email);
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.user).toBe(email);
@@ -157,14 +162,14 @@ describe(LoginPage.name, () => {
     component.user = correctUsersMock[0].email;
     fixture.detectChanges();
     component['checkRemain']();
-    expect(localStorage.getItem(component['EMAIL_KEY'])).toBeTruthy();
+    expect(localStorage.getItem(component.getEmailKey())).toBeTruthy();
   });
 
   it(`should remove email on storage`, () => {
     component.userRemains = false;
     fixture.detectChanges();
     component['checkRemain']();
-    expect(localStorage.getItem(component['EMAIL_KEY'])).toBeFalsy();
+    expect(localStorage.getItem(component.getEmailKey())).toBeFalsy();
   });
 
 });
