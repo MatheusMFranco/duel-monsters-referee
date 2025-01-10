@@ -1,4 +1,5 @@
 import { FormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { 
   ComponentFixture,
   TestBed,
@@ -11,7 +12,6 @@ import { LoginPage } from './login.page';
 
 import wrongUsersMock from './wrong-users.mock';
 import correctUsersMock from './correct-users.mock';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe(LoginPage.name, () => {
 
