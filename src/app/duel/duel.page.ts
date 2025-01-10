@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-duel',
   templateUrl: './duel.page.html',
   styleUrls: ['./duel.page.scss'],
 })
-export class DuelPage implements OnInit {
+export class DuelPage {
 
   constructor() { }
-
-  ngOnInit() {}
 
 }
