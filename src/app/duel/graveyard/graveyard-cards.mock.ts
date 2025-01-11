@@ -1,5 +1,5 @@
 export default [
-    'Kuriboh',
+  'Kuriboh',
   'Magician of Black Chaos',
   'Celtic Guardian',
   'Jinzo',
