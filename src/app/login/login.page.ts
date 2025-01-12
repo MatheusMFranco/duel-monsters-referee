@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   public user = '';
   public password = '';
   public userRemains = false;
-  public colorMode: ColorMode = 'success'; 
+  public colorMode: ColorMode = 'success';
   
   public userPage = UserPage;
   public duelPage = DuelPage;
