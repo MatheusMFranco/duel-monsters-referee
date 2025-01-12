@@ -1,10 +1,132 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text="Back" icon="caret-back"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<dmr-anonymous-template title="Register">
-  asasasas
+<dmr-anonymous-template title="Sign Up" [hasTransition]="true">
+  <form [formGroup]="userForm" (ngSubmit)="signUp()" class="register-container__fields">
+    <ion-row class="avatar-{{!avatarPreview ? 'blank' : 'filled'}} ion-justify-content-center">
+      <ion-avatar (click)="triggerFileInput()">
+        <img *ngIf="avatarPreview; else cameraIcon" [src]="avatarPreview" alt="Avatar" />
+        <ng-template #cameraIcon>
+          <ion-icon name="camera"></ion-icon>
+        </ng-template>
+      </ion-avatar>
+      <input 
+        id="input-avatar" 
+        type="file" 
+        accept="image/*" 
+        class="ion-hide"
+        formControlName="avatar"
+        (change)="onAvatarSelected($event)" 
+        #fileInput 
+      />
+    </ion-row>
+    <div class="register-container__fields">
+      <ion-input
+        id="input-name"
+        fill="outline"
+        label="Name"
+        color="success"
+        errorText="Name is required."
+        aria-label="Enter your name"
+        aria-describedby="name"
+        formControlName="name"
+        required
+      ></ion-input>
+
+      <ion-input
+        id="input-email"
+        fill="outline"
+        label="Email"
+        type="email"
+        color="success"
+        errorText="Invalid email."
+        helperText="Enter a valid email."
+        aria-label="Enter a valid email"
+        aria-describedby="email"
+        formControlName="email"
+        email
+        required
+      ></ion-input>
+
+      <ion-input
+        id="input-email-confirmation"
+        fill="outline"
+        label="Confirm Email"
+        type="email"
+        color="success"
+        errorText="Invalid email."
+        helperText="Enter a valid email."
+        aria-label="Enter a valid email"
+        aria-describedby="emailConfirmation"
+        formControlName="emailConfirmation"
+        email
+        required
+      ></ion-input>
+
+      <ion-input
+        id="input-password"
+        type="password"
+        fill="outline"
+        label="Password"
+        color="success"
+        errorText="Password must be greater than 7 characters."
+        aria-label="Password must be greater than 7 characters"
+        aria-describedby="password"
+        formControlName="password"
+        required
+      >
+        <ion-input-password-toggle
+          id="toggle-password"
+          role="button"
+          tabindex="0"
+          slot="end"
+          aria-label="Show password"
+          color="success"
+        ></ion-input-password-toggle>
+      </ion-input>
+
+      <ion-input
+        id="input-password-confirmation"
+        type="password"
+        fill="outline"
+        label="Confirm Password"
+        color="success"
+        errorText="Password must be greater than 7 characters."
+        aria-label="Password must be greater than 7 characters"
+        aria-describedby="passwordConfirmation"
+        formControlName="passwordConfirmation"
+        required
+      >
+        <ion-input-password-toggle
+          id="toggle-password"
+          role="button"
+          tabindex="0"
+          slot="end"
+          aria-label="Show password"
+          color="success"
+        ></ion-input-password-toggle>
+      </ion-input>
+      
+    </div>
+
+    <div class="signup-container__buttons">
+      <ion-button
+        id="btn-signup"
+        class="ion-margin-top"
+        expand="full"
+        [disabled]="isFormInvalid"
+        color="success"
+        (click)="signUp()"
+      >
+        Sign Up
+        <ion-icon slot="start" name="chevron-forward-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button
+        id="btn-back-to-login"
+        fill="clear"
+        expand="full"
+        color="success"
+        [routerLink]="['/login']"
+      >
+        Back to Login
+      </ion-button>
+    </div>
+  </form>
 </dmr-anonymous-template>
