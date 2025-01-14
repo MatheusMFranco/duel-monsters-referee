@@ -97,4 +97,60 @@ describe('UserPage Component', () => {
     button.click();
     expect(component.signUp).toHaveBeenCalled();
   });
+
+  it('should call signUp and retrieve form values when form is valid', () => {
+    spyOn(component, 'signUp').and.callThrough();
+
+    component.userForm.setValue({
+      name: 'Test User',
+      email: 'test@example.com',
+      emailConfirmation: 'test@example.com',
+      password: 'password123',
+      passwordConfirmation: 'password123',
+      avatar: '',
+    });
+
+    expect(component.userForm.valid).toBeTrue();
+
+    component.signUp();
+
+    expect(component.signUp).toHaveBeenCalled();
+    expect(component.userForm.value).toEqual({
+      name: 'Test User',
+      email: 'test@example.com',
+      emailConfirmation: 'test@example.com',
+      password: 'password123',
+      passwordConfirmation: 'password123',
+      avatar: '',
+    });
+  });
+
+  it('should trigger click on hidden file input element when avatar is clicked', () => {
+    const fileInput = fixture.nativeElement.querySelector('#input-avatar');
+    const clickSpy = spyOn(fileInput, 'click');
+    const avatarElement = fixture.nativeElement.querySelector('ion-avatar');
+    avatarElement.click();
+    expect(clickSpy).toHaveBeenCalled();
+  });
+
+  it('should update avatarPreview and form control when a file is selected', done => {
+    const file = new Blob(['dummy image data'], { type: 'image/png' });
+    const fileInputEvent = {
+      target: {
+        files: [file],
+      },
+    } as unknown as Event;
+
+    const patchSpy = spyOn(component.userForm, 'patchValue');
+
+    component.onAvatarSelected(fileInputEvent);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      expect(component.avatarPreview).toBe(reader.result as string);
+      expect(patchSpy).toHaveBeenCalledWith({ avatar: reader.result as string });
+      done();
+    };
+    reader.readAsDataURL(file);
+  });
 });
