@@ -27,7 +27,7 @@ describe('Login', () => {
         cy.get('#input-password').should('have.class', 'ng-invalid');
         cy.get('#input-password input').type('123456');
         cy.get('#input-password input').blur();
-        cy.contains('#error-password', 'Password must be greater than 8 characters.').should('be.visible');
+        cy.contains('#error-password', 'Password must be greater than 7 characters.').should('be.visible');
         cy.formError(couldHaveErrorList);
     });
 
