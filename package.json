@@ -12,7 +12,11 @@
     "e2e": "npx cypress open",
     "report": "npx cypress run --reporter mochawesome",
     "coverage": "ng test --watch=false --browsers ChromeHeadless --code-coverage",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "docker:build": "docker build -t duel-monsters-referee .",
+    "docker:run": "docker run -p 80:80 duel-monsters-referee",
+    "docker:dev:build": "docker build -f Dockerfile.dev -t duel-monsters-referee-dev .",
+    "docker:dev:run": "docker run -p 4200:4200 duel-monsters-referee-dev"
   },
   "private": true,
   "dependencies": {
