@@ -85,7 +85,3 @@ npm run report
 ## Deployment
 
 For production deployments (e.g., AWS Lightsail), use the production Docker image or serve the contents of the `dist/` folder with Nginx.
-
----
-
-**Author:** Ionic
